@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Project Generation - Centura</title>
+    <!-- Add your CSS files here -->
+    <style>
+        body {
+            background-color: #2b2b2b;
+            color: #fff;
+        }
+        nav {
+            margin-bottom: 20px;
+        }
+        #error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/projects">My Projects</a>
+        <a href="/logout">Logout</a>
+    </nav>
+
+    <h1>Create a new project</h1>
+
+    <form id="project-form" method="post" action="/project">
+        <label for="project_type">Project Type:</label><br>
+        <select id="project_type" name="project_type" required>
+            <option value="">--Please choose an option--</option>
+            <option value="book">Book</option>
+            <option value="lyrics">Lyrics</option>
+            <option value="essay">Essay</option>
+            <option value="email">Email</option>
+            <option value="text-message">Text Message</option>
+        </select><br>
+
+        <label for="project_genre">Project Genre:</label><br>
+        <input type="text" id="project_genre" name="project_genre" required><br>
+
+        <input type="submit" value="Create">
+    </form>
+
+    <p id="error-message"></p>
+
+    <script>
+        document.getElementById('project-form').addEventListener('submit', function(event) {
+            var type = document.getElementById('project_type').value;
+            var genre = document.getElementById('project_genre').value;
+
+            if (!type || !genre) {
+                event.preventDefault();
+                document.getElementById('error-message').textContent = 'Both fields are required.';
+            }
+        });
+    </script>
+</body>
+</html>
