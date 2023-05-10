@@ -6,8 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 	"github.com/jinzhu/gorm"
-
-	"../models"
+    "github.com/Frenzyz/centgo/models"
 )
 
 var db *gorm.DB
