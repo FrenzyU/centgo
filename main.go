@@ -3,11 +3,10 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	
-	"./handlers"
-	"./middleware"
-	"./models"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"	
+    "github.com/Frenzyz/centgo/handlers"
+    "github.com/Frenzyz/centgo/middleware"
+    "github.com/Frenzyz/centgo/models"
 )
 
 var db *gorm.DB

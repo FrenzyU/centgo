@@ -1,24 +1,24 @@
-# Use the official Go image from the Docker Hub
-FROM golang:1.17-alpine
+# Start from the latest golang base image
+FROM golang:latest
 
-# Install git.
-# Git is required for fetching the dependencies.
-RUN apk update && apk add --no-cache git
-
-# Create a directory in the container to hold the source code
+# Set the Current Working Directory inside the container
 WORKDIR /app
 
-# Copy the source code into the container
+# Copy go mod and sum files
+COPY go.mod go.sum ./
+
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+RUN go mod download
+
+# Copy the source from the current directory to the Working Directory inside the container
 COPY . .
 
-# Fetch the dependencies using go get
-RUN go get -d -v
+# Build the Go app
+RUN go build -o main .
 
-# Build the application
-RUN go build -o /main .
-
-# Expose port 8080 to the outside
+# Expose port 8080 to the outside world
 EXPOSE 8080
 
-# Command to run when starting the container
-CMD ["/main"]
+# Command to run the executable
+CMD ["./main"]
+
